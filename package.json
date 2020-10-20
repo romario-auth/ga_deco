@@ -1,0 +1,29 @@
+{
+  "name": "ga_deco",
+  "version": "1.0.0",
+  "description": "System Rental management system for a party and decoration company",
+  "main": "app.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/romario-auth/ga_deco.git"
+  },
+  "keywords": [
+    "rental",
+    "management",
+    "system",
+    "party",
+    "decoration",
+    "company"
+  ],
+  "author": "São Paulo Vila Curuçá 4N.3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/romario-auth/ga_deco/issues"
+  },
+  "homepage": "https://github.com/romario-auth/ga_deco#readme"
+}

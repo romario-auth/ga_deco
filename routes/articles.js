@@ -7,9 +7,14 @@ router.get('/list', (req, res) =>{
         ['id', 'DESC']
     ]})
     .then(articles => {
-        res.send(articles);
+        res.render('articleList', {articles});
     })
     .catch(err => console.log('Erro Articles get: ' + err))
+})
+
+// form add article
+router.get('/add', (req, res) => {
+    res.render('articleAdd')
 })
 
 // add Article
@@ -23,7 +28,7 @@ router.post('/add', (req, res) => {
         paid,
         description
     })
-    .then(() => res.redirect('/'))
+    .then(() => res.redirect('/aplicativo/article/list'))
     .catch(err => console.log(err))
 })
 

@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Lista de artigos cadastrados</h2>
+  <hr>   
+  <p>Visualize, atualize ou remova os artigos</p>      
+  <table class="table">
+    <thead class="thead-light">
+      <tr>
+        <th>Nome</th>
+        <th>Data de compra</th>
+        <th>Valor Pago</th>
+        <th>Descrição</th>
+        <th>Última atualização</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+        {{#each articles }}
+        <tr>
+            <td>{{dataValues.name}}</td>
+            <td>{{dataValues.acquisition}}</td>
+            <td>R$ {{dataValues.paid}}</td>
+            <td>{{dataValues.description}}</td>
+            <td>{{dataValues.updatedAt}}</td>
+            <td>
+                <a href="#"><span class="material-icons" title="Editar">edit</span></a>
+                <a href="#"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+  </table>
+</div>

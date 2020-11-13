@@ -1,4 +1,86 @@
+body
+{
+    background-color: #333333;
+}
+header
+{
+    height: 47px;
+    background-color: black;
+}
+header p
+{
+    padding-top: 7px;
+    margin-right: 50px;
+    text-align: right;
+}
+header .material-icons
+{
+    font-size: 15px;
+}
+
+/* Menu */
+.menu
+{
+    border-radius: 0px;
+    background-color: #333333;
+    color: white;
+    border-right: 1px solid white;
+    box-shadow: 2px 5px whitesmoke;
+    margin-right: -30px;
+    padding-right: -10px;
+
+    height: 650px;
+}
+.menu-logo
+{
+    padding-top: 30px;
+    padding-left: 10px;
+    width: 184px;
+}
+.list-group
+{
+    margin-left: 10px;
+    list-style-type: none;
+}
+.sub-menu
+{
+    list-style-type: none;
+}
+.sub-menu a
+{
+    width: 150px;
+    margin: 2px 0px 2px 0px;
+}
+
+
+
+
+.appframe
+{
+    margin: 30px;
+    margin-left: 10px;
+    padding: 20px;
+    border: 2px double #dfdfdf;
+    border-radius: 10px;
+
+    background-color: white;
+    box-shadow: 2px 1px #dfdfdf;
+
+    height: 520px;
+    overflow: auto;
+}
+
 footer p 
 {
     text-align: center;
+}
+table thead tr
+{
+    text-transform: uppercase;
+    color: #333;
+    font-size: 11px;
+}
+table tbody td
+{
+    font-size: 14px !important;
 }

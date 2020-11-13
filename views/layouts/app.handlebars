@@ -5,29 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ga Deco - Aplicativo</title>
 
+    <!-- favicon-->
+    <link rel="icon" href="/app/img/favicon.ico"> 
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="app/css/app.css">
+    <link rel="stylesheet" href="/app/css/app.css">
+
+    <!--Material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
 <body>
 <header>
-    <p>Top Bar</p>
+    <p><a href="/" class="btn btn-light btn-sm"><span class="material-icons">person_outline</span>  SAIR</a></p>
 </header>
 
 <div class="container-fuild">
     <div class="row">
-        <div class="col-sm-1">
-            <p>Menu</p>
-            <ul>
-                <li>Itens</li>
-                <li>Eventos</li>
-                <li>Contratos</li>
-            </ul>
-        </div><!--./col-sm-1-->
-        <div class="col-sm-11">
-            {{{body}}}
-        </div><!--./col-sm-11-->
+            <div class="col-sm-2">
+            <div class="menu">
+                <img class="menu-logo" src="/app/img/logo.png">
+                <p>MAIN NAVIGATION</p>
+                <ul class="list-group">
+                    <li><span class="material-icons">shopping_cart</span> Artigos</li>
+                    <ul class="sub-menu">
+                        <li><a href="/aplicativo/article/list" class="btn btn-primary">Visualizar</a></li>
+                        <li><a href="/aplicativo/article/add" class="btn btn-primary">Adicionar</a></li>
+                    </ul>
+                    <li><span class="material-icons">cake</span> Eventos</li>
+                    <ul class="sub-menu">
+                        <li>Visualizar</li>
+                        <li>Adicionar</li>
+                        <li>Atualizar</li>
+                        <li>Remover</li>
+                    </ul>
+                    <li><span class="material-icons">flaky</span> Contratos</li>
+                    <ul class="sub-menu">
+                        <li>Visualizar</li>
+                        <li>Adicionar</li>
+                        <li>Atualizar</li>
+                        <li>Remover</li>
+                    </ul>
+                </ul>
+            </div><!--./menu-->
+            </div><!--./col-sm-2-->
+            
+            <div class="col-sm-10">
+                <div class="appframe">
+                    {{{body}}}
+                </div><!--./appframe-->
+            </div><!--./col-sm-10-->
     </div><!--./row-->
 </div>
 

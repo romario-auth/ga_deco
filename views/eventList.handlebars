@@ -1,30 +1,26 @@
 <div class="container">
-  <h2>Lista de artigos cadastrados</h2>
-  <hr>   
-  <p>Visualize, atualize ou remova os artigos</p>      
+  <h4>Visualize, atualize ou remova os eventos</h4>      
   <table class="table">
     <thead class="thead-light">
       <tr>
-        <th>Nome</th>
-        <th>Data de compra</th>
-        <th>Valor Pago</th>
-        <th>Descrição</th>
+        <th>Data do Evento</th>
+        <th>Endereço</th>
+        <th>Cliente</th>
         <th>Última atualização</th>
         <th>Ações</th>
       </tr>
     </thead>
     <tbody>
-        {{#each articles }}
+        {{#each events }}
         <tr>
             <td>
-              {{dataValues.name}}
+              {{dataValues.date}}
               {{#if @first}}
-               <span class="badge badge-pill badge-success">New</span>
+               <span class="badge badge-pill badge-success">Last</span>
               {{/if}}
             </td>
-            <td>{{dataValues.acquisition}}</td>
-            <td>R$ {{dataValues.paid}}</td>
-            <td>{{dataValues.description}}</td>
+            <td>{{dataValues.address}}</td>
+            <td>{{dataValues.client}}</td>
             <td>{{dataValues.updatedAt}}</td>
             <td class="list-action">
                 <a href="#"><span class="material-icons" title="Editar">edit</span></a>

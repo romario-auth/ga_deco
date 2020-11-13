@@ -84,3 +84,15 @@ table tbody td
 {
     font-size: 14px !important;
 }
+.list-action .material-icons
+{
+    font-size: 16px;
+    color: teal;
+}
+.form-title
+{
+    padding: 10px 0px 10px 0px;
+    background-color: #e6ebff;
+    border-bottom: 1px solid #ddd;
+    color: #666666
+}

@@ -8,9 +8,14 @@ router.get('/list', (req, res) => {
         ['id', 'DESC']
     ]})
     .then(events => {
-        res.send(events)
+        res.render('eventList', {events})
     })
     .catch(err => console.log('Erro list Events' + err))
+})
+
+// form add event
+router.get('/add', (req, res) => {
+    res.render('eventAdd')
 })
 
 // Add Event
@@ -23,7 +28,7 @@ router.post('/add', (req, res) => {
         address,
         client
     })
-    .then(() => res.redirect('/event'))
+    .then(() => res.redirect('/aplicativo/event/list'))
     .catch(err => console.log('Add fail Events: ' + err))
 })
 

@@ -1,0 +1,56 @@
+body
+{
+    background-image: url('../img/welcome_background.jpg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+.top-bar-welcome{
+    margin: 40px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+.welcome-message
+{
+    text-align: center;
+}
+.welcome-message h1
+{
+    color: white;
+    margin: 10px;
+    margin-top: 30px;
+    font-size: 36px;
+}
+@media(min-width: 640px)
+{
+    .welcome-message h1
+    {
+        margin-left: 150px;
+        margin-right: 150px;
+        margin-top: 150px;
+    }
+}
+.footer-welcome
+{
+    color: white;
+    margin-top: 200px;
+    text-align: center;
+}
+
+.about-message
+{
+    border-radius: 10px;
+    background-color: white;
+    color: #333333;
+
+    margin: 40px;
+    margin-top: 70px;
+    padding: 10px;
+
+    opacity: 0.9;
+}
+@media(min-width: 640px)
+{
+    margin: 150px;
+}

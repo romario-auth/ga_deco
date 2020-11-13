@@ -3,8 +3,8 @@ const router = express.Router()
 const Contract = require('../models/Contract')
 
 // List Contract
-router.get('/event/:numevent', (req, res) => {
-    let contractEvent = req.params.numevent
+router.get('/event/:event', (req, res) => {
+    let contractEvent = req.params.event
 
     Contract.findAndCountAll({ 
         where: {event_id: contractEvent},

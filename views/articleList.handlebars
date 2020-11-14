@@ -27,7 +27,7 @@
             <td>{{dataValues.description}}</td>
             <td>{{dataValues.updatedAt}}</td>
             <td class="list-action">
-                <a href="#"><span class="material-icons" title="Editar">edit</span></a>
+                <a href="#" class="articleUpdate" id={{dataValues.id}} data-toggle="modal" data-target="#updateArticle"><span class="material-icons" title="Editar">edit</span></a>
                 <a href="#" class="articleRemove" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteArticle"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
             </td>
         </tr>
@@ -36,7 +36,7 @@
   </table>
 
 
-<!-- Modal -->
+<!-- Modal Delete-->
 <div class="modal fade" id="deleteArticle" tabindex="-1" role="dialog" aria-labelledby="deleteArticleLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -50,15 +50,19 @@
           <h5 class="form-title">Tem certeza que deseja excluir? </h5>
 
           <div class="form-group">
+              <label for="Nome">Nome:</label>
               <input type="input" class="form-control" id="name" placeholder="Carregando..." name="name" disabled>
           </div>
           <div class="form-group">
+              <label for="acquisition">Data de compra:</label>
               <input type="date" class="form-control" id="acquisition" placeholder="Carregando..." name="acquisition" disabled>
           </div>
           <div class="form-group">
+              <label for="paid">Valor R$:</label>
               <input type="input" class="form-control" id="paid" placeholder="Carregando..." name="paid" disabled>
           </div>
           <div class="form-group">
+              <label for="description">Descrição:</label>
               <textarea class="form-control" id="description" placeholder="Carregando..." name="description" disabled></textarea>
           </div>
           <div class="form-group">
@@ -75,5 +79,53 @@
       </div>
     </div>
   </div>
-</div>
+</div><!--./modal Delete-->
+
+
+
+<!-- Modal Update-->
+<div class="modal fade" id="updateArticle" tabindex="-1" role="dialog" aria-labelledby="updateArticleLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateArticleLabel">Atualizar Artigo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <h5 class="form-title">Atualize os dados e clique em salvar</h5>
+
+          <div class="form-group">
+              <label for="Nome">Nome:</label>
+              <input type="input" class="form-control" id="name" placeholder="Nome do Artigo" name="name" required>
+          </div>
+          <div class="form-group">
+              <label for="acquisition">Data de compra:</label>
+              <input type="date" class="form-control" id="acquisition" placeholder="Data de compra" name="acquisition" required>
+          </div>
+          <div class="form-group">
+              <label for="paid">Valor Pago R$:</label>
+              <input type="input" class="form-control" id="paid" placeholder="Valor pago" name="paid" required>
+          </div>
+          <div class="form-group">
+              <label for="description">Descrição:</label>
+              <textarea class="form-control" id="description" placeholder="Descrição" name="description" required></textarea>
+          </div>
+          <div class="form-group">
+              <input type="hidden" id="idArticle" value="">
+          </div>
+          <div class="form-group">
+              <span class="respostServen"></span>
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Sair</button>
+        <button type="button" class="btn btn-primary" id="yesUpdateArticle">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div><!--./modal Update-->
+
 </div>

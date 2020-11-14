@@ -6,8 +6,8 @@ const Article   = require('../models/Article')
 router.get('/detail/:id', (req, res) => {
     let idArticle = req.params.id;
 
-    Article.findAll({
-        where: {id: idArticle} 
+    Article.findByPk({
+        where: {id: idArticle},
     })
     .then(article => {
         res.send(article)
@@ -26,6 +26,23 @@ router.post('/delete', (req, res) => {
     })
     .then(() => res.send(true))
     .catch(err => console.log('Delete erro' + err))
+})
+
+// Update Article
+router.post('/update', (req, res) => {
+    let {id, name, acquisition, paid, description} = req.body;
+
+    Article.findByPk(id)
+    .then((article) => {
+        article.name = name
+        article.acquisition = acquisition
+        article.paid = paid
+        article.description = description
+
+        return article.save()
+    })
+    .then(() => res.send(true))
+    .catch(err => console.log('Update erro' + err))
 })
 
 // List article

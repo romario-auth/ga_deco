@@ -31,7 +31,7 @@
                 <ul class="list-group">
                     <li><span class="material-icons">shopping_cart</span> Artigos</li>
                     <ul class="sub-menu">
-                        <li><a href="/aplicativo/article/list" class="btn btn-outline-secondary btn-block">Visualizar</a></li>
+                        <li><a href="/aplicativo/article/list" class="btn btn-outline-secondary btn-block">Gerenciar</a></li>
                         <li><a href="/aplicativo/article/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
                     </ul>
                     <li><span class="material-icons">cake</span> Eventos</li>
@@ -58,28 +58,29 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script>
-    $('.articleRemove').click(function(){
+    
+    // Get Article for delete or update
+    $('.articleRemove, .articleUpdate').click(function(){
 
         let idArticle = $(this).attr('id');
-        console.log('Id: ' + idArticle);
 
         $.ajax({
             url: '/aplicativo/article/detail/' + idArticle,
             type: 'get',
         })
         .done(function(res){
-            console.log(res[0].name)
-            $('#deleteArticle #name').val(res[0].name);
-            $('#deleteArticle #acquisition').val(res[0].acquisition);
-            $('#deleteArticle #paid').val(res[0].paid);
-            $('#deleteArticle #description').val(res[0].description);
-            $('#deleteArticle #idArticle').val(res[0].id);
+            $('#deleteArticle #name , #updateArticle #name').val(res[0].name);
+            $('#deleteArticle #acquisition, #updateArticle #acquisition').val(res[0].acquisition);
+            $('#deleteArticle #paid, #updateArticle #paid').val(res[0].paid);
+            $('#deleteArticle #description, #updateArticle #description').val(res[0].description);
+            $('#deleteArticle #idArticle, #updateArticle #idArticle').val(res[0].id);
         })
         .fail(function(res){
-            console.log('Não foi possível recuperar o elemento' + res)
+            $('.respostServen').html('Não foi possível recuperar o elemento' + res)
         })
     })
 
+    // Confirme delete Article
     $('#yesExcluirArticle').click(function(){
 
         // by clicking send destroy the buttons
@@ -98,11 +99,47 @@
             $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Excluído com sucesso</span>");
         })
         .fail(function(res){
-            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível excluir: </span>");
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível excluir</span>");
         })
 
         // Refrash page after close modal
         $('#deleteArticle').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+
+    // Do update Article
+    $('#yesUpdateArticle').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idArticle = $('#idArticle').val();
+        let nameArticle = $('#updateArticle #name').val();
+        let acquisitionArticle = $('#updateArticle #acquisition').val();
+        let paidArticle = $('#updateArticle #paid').val();
+        let descriptionArticle = $('#updateArticle #description').val();
+
+        $.ajax({
+            url: '/aplicativo/article/update',
+            type: 'post',
+            data: {
+                id: idArticle,
+                name: nameArticle,
+                acquisition: acquisitionArticle,
+                paid: paidArticle,
+                description: descriptionArticle
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Atualizado com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível atualizar</span>");
+        })
+
+        // Refrash page after close modal
+        $('#updateArticle').on('hidden.bs.modal', function (e) {
             document.location.reload();
         })
     })

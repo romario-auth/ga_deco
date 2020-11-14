@@ -96,3 +96,13 @@ table tbody td
     border-bottom: 1px solid #ddd;
     color: #666666
 }
+
+/*Modal CSS*/
+.btn-exit-Modal
+{
+
+    border: 2px solid blueviolet !important;
+    padding: 5px 10px 5px 10px !important;
+    border-radius: 8px !important;
+    font-size: 19px !important;
+}

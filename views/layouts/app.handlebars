@@ -54,8 +54,58 @@
 <footer>
     <p>GA Deco 2020 - Todos os direitos reservados </p>
 </footer>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha38
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    $('.articleRemove').click(function(){
+
+        let idArticle = $(this).attr('id');
+        console.log('Id: ' + idArticle);
+
+        $.ajax({
+            url: '/aplicativo/article/detail/' + idArticle,
+            type: 'get',
+        })
+        .done(function(res){
+            console.log(res[0].name)
+            $('#deleteArticle #name').val(res[0].name);
+            $('#deleteArticle #acquisition').val(res[0].acquisition);
+            $('#deleteArticle #paid').val(res[0].paid);
+            $('#deleteArticle #description').val(res[0].description);
+            $('#deleteArticle #idArticle').val(res[0].id);
+        })
+        .fail(function(res){
+            console.log('Não foi possível recuperar o elemento' + res)
+        })
+    })
+
+    $('#yesExcluirArticle').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idArticle = $('#idArticle').val();
+
+        $.ajax({
+            url: '/aplicativo/article/delete',
+            type: 'post',
+            data: {
+                id: idArticle,
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Excluído com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível excluir: </span>");
+        })
+
+        // Refrash page after close modal
+        $('#deleteArticle').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+</script>
 </body>
 </html>

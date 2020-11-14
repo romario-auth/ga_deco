@@ -2,6 +2,33 @@ const express   = require('express')
 const router    = express.Router()
 const Article   = require('../models/Article')
 
+// Get on element
+router.get('/detail/:id', (req, res) => {
+    let idArticle = req.params.id;
+
+    Article.findAll({
+        where: {id: idArticle} 
+    })
+    .then(article => {
+        res.send(article)
+    })
+    .catch(err => console.log('Not possible recure elemente' + err))
+
+})
+
+// Delete Article
+router.post('/delete', (req, res) => {
+    
+    let idArticle = req.body.id;
+    
+    Article.destroy({
+        where: {id: idArticle}
+    })
+    .then(() => res.send(true))
+    .catch(err => console.log('Delete erro' + err))
+})
+
+// List article
 router.get('/list', (req, res) =>{
     Article.findAll({order: [
         ['id', 'DESC']

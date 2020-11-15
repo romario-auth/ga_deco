@@ -6,7 +6,7 @@ const Article   = require('../models/Article')
 router.get('/detail/:id', (req, res) => {
     let idArticle = req.params.id;
 
-    Article.findByPk({
+    Article.findAll({
         where: {id: idArticle},
     })
     .then(article => {

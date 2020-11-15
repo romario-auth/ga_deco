@@ -2,6 +2,48 @@ const express   = require('express')
 const router    = express.Router()
 const Event     = require('../models/Event')
 
+// Get on element
+router.get('/detail/:id', (req, res) => {
+    let idEvent = req.params.id;
+
+    Event.findAll({
+        where: {id: idEvent},
+    })
+    .then(event => {
+        res.send(event)
+    })
+    .catch(err => console.log('Not possible recure elemente' + err))
+
+})
+
+// Delete Event
+router.post('/delete', (req, res) => {
+    
+    let idEvent = req.body.id;
+    
+    Event.destroy({
+        where: {id: idEvent}
+    })
+    .then(() => res.send(true))
+    .catch(err => console.log('Delete erro' + err))
+})
+
+// Update Event
+router.post('/update', (req, res) => {
+    let {id, date, address, client} = req.body;
+
+    Event.findByPk(id)
+    .then((event) => {
+        event.date = date
+        event.address = address
+        event.client = client
+
+        return event.save()
+    })
+    .then(() => res.send(true))
+    .catch(err => console.log('Update erro' + err))
+})
+
 //List Event
 router.get('/list', (req, res) => {
     Event.findAll({order: [

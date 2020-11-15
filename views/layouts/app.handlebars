@@ -143,6 +143,95 @@
             document.location.reload();
         })
     })
+
+
+    /*
+    *
+    * Manager Event
+    *
+    */
+    // Get Event for delete or update
+    $('.eventRemove, .eventUpdate').click(function(){
+
+        let idEvent = $(this).attr('id');
+        let classEvent = $(this).attr('class');
+
+        $.ajax({
+            url: '/aplicativo/event/detail/' + idEvent,
+            type: 'get',
+        })
+        .done(function(res){
+            $('#deleteEvent #date , #updateEvent #date').val(res[0].date);
+            $('#deleteEvent #address, #updateEvent #address').val(res[0].address);
+            $('#deleteEvent #client, #updateEvent #client').val(res[0].client);
+            $('#deleteEvent #idEvent, #updateEvent #idEvent').val(res[0].id);
+        })
+        .fail(function(res){
+            $('.respostServen').html('Não foi possível recuperar o elemento' + res)
+        })
+    })
+
+    // Confirme delete Event
+    $('#yesExcluirEvent').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idEvent = $('#idEvent').val();
+
+        $.ajax({
+            url: '/aplicativo/event/delete',
+            type: 'post',
+            data: {
+                id: idEvent,
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Excluído com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível excluir</span>");
+        })
+
+        // Refrash page after close modal
+        $('#deleteEvent').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
+
+    // Do update Event
+    $('#yesUpdateEvent').click(function(){
+
+        // by clicking send destroy the buttons
+        $('.modal-footer').html("<button type='button' class='close btn-exit-Modal' data-dismiss='modal' aria-label='Close'>Sair</button>");
+
+        let idEvent = $('#idEvent').val();
+        let dateEvent = $('#updateEvent #date').val();
+        let addressEvent = $('#updateEvent #address').val();
+        let clientEvent = $('#updateEvent #client').val();
+
+        $.ajax({
+            url: '/aplicativo/event/update',
+            type: 'post',
+            data: {
+                id: idEvent,
+                date: dateEvent,
+                address: addressEvent,
+                client: clientEvent
+            },
+        })
+        .done(function(res){
+            $('.respostServen').html("<span class='text-primary'><span class='material-icons'>check_circle_outline</span> Atualizado com sucesso</span>");
+        })
+        .fail(function(res){
+            $('.respostServen').html("<span class='text-warning'><span class='material-icons'>error_outline</span> Não foi possível atualizar</span>");
+        })
+
+        // Refrash page after close modal
+        $('#updateEvent').on('hidden.bs.modal', function (e) {
+            document.location.reload();
+        })
+    })
 </script>
 </body>
 </html>

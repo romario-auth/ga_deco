@@ -23,11 +23,92 @@
             <td>{{dataValues.client}}</td>
             <td>{{dataValues.updatedAt}}</td>
             <td class="list-action">
-                <a href="#"><span class="material-icons" title="Editar">edit</span></a>
-                <a href="#"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
+                <a href="#" class="eventUpdate" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateEvent"><span class="material-icons" title="Editar">edit</span></a>
+                <a href="#" class="eventRemove" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteEvent"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
             </td>
         </tr>
         {{/each}}
     </tbody>
   </table>
+
+  <!-- Modal Delete-->
+  <div class="modal fade" id="deleteEvent" tabindex="-1" role="dialog" aria-labelledby="deleteEventLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteEventLabel">Excluir Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h5 class="form-title">Tem certeza que deseja excluir? </h5>
+            <div class="form-group">
+                <label for="date">Data do Evento:</label>
+                <input type="date" class="form-control" id="date" placeholder="Carregando..." name="date" disabled>
+            </div>
+            <div class="form-group">
+                <label for="address">Endereço:</label>
+                <input type="input" class="form-control" id="address" placeholder="Carregando..." name="address" disabled>
+            </div>
+            <div class="form-group">
+                <label for="client">Cliente:</label>
+                <input type="input" class="form-control" id="client" placeholder="Carregando..." name="client" disabled>
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="idEvent" value="">
+            </div>
+            <div class="form-group">
+                <span class="respostServen"></span>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="yesExcluirEvent">Sim, Excluir</button>
+        </div>
+      </div>
+    </div>
+  </div><!--./modal Delete-->
+
+  <!-- Modal Update-->
+  <div class="modal fade" id="updateEvent" tabindex="-1" role="dialog" aria-labelledby="updateEventLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateEventLabel">Atualizar Evento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <h5 class="form-title">Atualize os dados e clique em salvar</h5>
+            <div class="form-group">
+                <label for="date">Data do Evento:</label>
+                <input type="date" class="form-control" id="date" placeholder="Data do evento: " name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Endereço:</label>
+                <input type="input" class="form-control" id="address" placeholder="Endereço: " name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="client">Cliente:</label>
+                <input type="input" class="form-control" id="client" placeholder="Client: " name="client" required>
+            </div>
+            <div class="form-group">
+                <input type="hidden" id="idEvent" value="">
+            </div>
+            <div class="form-group">
+                <span class="respostServen"></span>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="yesUpdateEvent">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div><!--./modal Update-->
+
 </div>

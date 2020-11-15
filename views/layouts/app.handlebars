@@ -27,18 +27,22 @@
             <div class="col-sm-2">
             <div class="menu">
                 <img class="menu-logo" src="/app/img/logo.png">
-                <p>MAIN NAVIGATION</p>
+                <p>MAIN NAVIGATION: </p>
                 <ul class="list-group">
-                    <li><span class="material-icons">shopping_cart</span> Artigos</li>
-                    <ul class="sub-menu">
-                        <li><a href="/aplicativo/article/list" class="btn btn-outline-secondary btn-block">Gerenciar</a></li>
-                        <li><a href="/aplicativo/article/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
-                    </ul>
-                    <li><span class="material-icons">cake</span> Eventos</li>
-                    <ul class="sub-menu">
-                        <li><a href="/aplicativo/event/list" class="btn btn-outline-secondary btn-block">Visualizar</a></li>
-                        <li><a href="/aplicativo/event/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
-                    </ul>
+                    <li class="item">
+                        <span class="material-icons">shopping_cart</span> Artigos
+                        <ul class="sub-menu">
+                            <li><a href="/aplicativo/article/list" class="btn btn-outline-secondary btn-block">Gerenciar</a></li>
+                            <li><a href="/aplicativo/article/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <span class="material-icons">cake</span> Eventos
+                        <ul class="sub-menu">
+                            <li><a href="/aplicativo/event/list" class="btn btn-outline-secondary btn-block">Gerenciar</a></li>
+                            <li><a href="/aplicativo/event/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div><!--./menu-->
             </div><!--./col-sm-2-->
@@ -232,6 +236,18 @@
             document.location.reload();
         })
     })
+</script>
+
+<!--Calendar-->
+<script src="/app/js/zabuto_calendar.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/app/css/zabuto_calendar.min.css">
+<script>
+    $(document).ready(function () {
+        $("#calendarZabuto").zabuto_calendar({
+            language: "pt",
+            today: true,
+        });
+    });
 </script>
 </body>
 </html>

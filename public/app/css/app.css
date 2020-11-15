@@ -1,6 +1,6 @@
 body
 {
-    background-color: #333333;
+    background-color: #f1f1f1;
 }
 header
 {
@@ -41,39 +41,51 @@ header .material-icons
 {
     margin-left: 10px;
     list-style-type: none;
+    font-size: 14px !important;
+}
+.list-group .item
+{
+    margin-top: 20px;
+}
+.list-group .material-icons
+{
+    font-size: 15px;
+    color: rgb(162, 92, 228);
 }
 .sub-menu
 {
     list-style-type: none;
+    margin-left: -38px;
 }
 .sub-menu a
 {
-    width: 150px;
+    width: 200px;
     margin: 2px 0px 2px 0px;
+    font-size: 14px !important;
 }
 
 
 
 
-.appframe
+.appframe .container
 {
     margin: 30px;
+    margin-right: 0px;
     margin-left: 10px;
     padding: 20px;
     border: 2px double #dfdfdf;
     border-radius: 10px;
 
     background-color: white;
-    box-shadow: 2px 1px #dfdfdf;
 
-    height: 520px;
+    -webkit-box-shadow: 0px 0px 8px 0px #000000; 
+    box-shadow: 0px 0px 8px 0px #000000;
+
+    max-height: 520px;
     overflow: auto;
 }
 
-footer p 
-{
-    text-align: center;
-}
+
 table thead tr
 {
     text-transform: uppercase;
@@ -84,17 +96,27 @@ table tbody td
 {
     font-size: 14px !important;
 }
+.list-action a
+{
+    display: inline-table;
+    width: 15px;
+    font-size: 12px !important;
+    border-radius: 2px;
+    border: none;
+}
 .list-action .material-icons
 {
-    font-size: 16px;
-    color: teal;
+    font-size: 12px;
+    color: white;
+    font-weight: bold;
 }
 .form-title
 {
-    padding: 10px 0px 10px 0px;
-    background-color: #e6ebff;
-    border-bottom: 1px solid #ddd;
-    color: #666666
+    padding: 3px 0px 3px 10px;
+    background-color: #86b791;
+    border-bottom: 1px solid #86b791;
+    color: white;
+    border-radius: 5px;
 }
 
 /*Modal CSS*/
@@ -105,4 +127,14 @@ table tbody td
     padding: 5px 10px 5px 10px !important;
     border-radius: 8px !important;
     font-size: 19px !important;
+}
+
+
+
+
+
+
+footer p 
+{
+    text-align: center;
 }

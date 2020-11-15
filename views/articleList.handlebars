@@ -1,7 +1,5 @@
 <div class="container">
-  <h2>Lista de artigos cadastrados</h2>
-  <hr>   
-  <p>Visualize, atualize ou remova os artigos</p>      
+  <h4>Visualize, atualize ou remova os <span class="badge badge-warning">artigos</span></h4>      
   <table class="table">
     <thead class="thead-light">
       <tr>
@@ -27,8 +25,8 @@
             <td>{{dataValues.description}}</td>
             <td>{{dataValues.updatedAt}}</td>
             <td class="list-action">
-                <a href="#" class="articleUpdate" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateArticle"><span class="material-icons" title="Editar">edit</span></a>
-                <a href="#" class="articleRemove" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteArticle"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
+                <a href="#" class="articleUpdate btn btn-primary" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateArticle"><span class="material-icons" title="Editar">edit</span></a>
+                <a href="#" class="articleRemove btn btn-danger" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteArticle"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
             </td>
         </tr>
         {{/each}}
@@ -41,14 +39,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteArticleLabel">Excluir Artigo</h5>
+        <h5 class="modal-title" id="deleteArticleLabel">Tem certeza que deseja excluir? </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <h5 class="form-title">Tem certeza que deseja excluir? </h5>
-
           <div class="form-group">
               <label for="Nome">Nome:</label>
               <input type="input" class="form-control" id="name" placeholder="Carregando..." name="name" disabled>
@@ -88,14 +84,12 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateArticleLabel">Atualizar Artigo</h5>
+        <h5 class="modal-title" id="updateArticleLabel">Atualize os dados e clique em salvar</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-          <h5 class="form-title">Atualize os dados e clique em salvar</h5>
-
           <div class="form-group">
               <label for="Nome">Nome:</label>
               <input type="input" class="form-control" id="name" placeholder="Nome do Artigo" name="name" required>
@@ -128,4 +122,5 @@
   </div>
 </div><!--./modal Update-->
 
+</div>
 </div>

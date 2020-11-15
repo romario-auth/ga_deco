@@ -1,5 +1,5 @@
 <div class="container">
-  <h4>Visualize, atualize ou remova os eventos</h4>      
+  <h4>Visualize, atualize ou remova os <span class="badge badge-warning">eventos</span></h4>      
   <table class="table">
     <thead class="thead-light">
       <tr>
@@ -23,8 +23,8 @@
             <td>{{dataValues.client}}</td>
             <td>{{dataValues.updatedAt}}</td>
             <td class="list-action">
-                <a href="#" class="eventUpdate" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateEvent"><span class="material-icons" title="Editar">edit</span></a>
-                <a href="#" class="eventRemove" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteEvent"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
+                <a href="#" class="eventUpdate btn btn-primary" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateEvent"><span class="material-icons" title="Editar">edit</span></a>
+                <a href="#" class="eventRemove btn btn-danger" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteEvent"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
             </td>
         </tr>
         {{/each}}
@@ -36,13 +36,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="deleteEventLabel">Excluir Evento</h5>
+          <h5 class="modal-title" id="deleteEventLabel">Tem certeza que deseja excluir? </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <h5 class="form-title">Tem certeza que deseja excluir? </h5>
             <div class="form-group">
                 <label for="date">Data do Evento:</label>
                 <input type="date" class="form-control" id="date" placeholder="Carregando..." name="date" disabled>
@@ -76,13 +75,12 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="updateEventLabel">Atualizar Evento</h5>
+          <h5 class="modal-title" id="updateEventLabel">Atualize os dados e clique em salvar</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <h5 class="form-title">Atualize os dados e clique em salvar</h5>
             <div class="form-group">
                 <label for="date">Data do Evento:</label>
                 <input type="date" class="form-control" id="date" placeholder="Data do evento: " name="date" required>

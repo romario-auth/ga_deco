@@ -25,6 +25,7 @@
             <td class="list-action">
                 <a href="#" class="eventUpdate btn btn-primary" id="{{dataValues.id}}" data-toggle="modal" data-target="#updateEvent"><span class="material-icons" title="Editar">edit</span></a>
                 <a href="#" class="eventRemove btn btn-danger" id="{{dataValues.id}}" data-toggle="modal" data-target="#deleteEvent"><span class="material-icons" title="Remover">remove_circle_outline</span></a>
+                <a href="/aplicativo/contract/event/{{dataValues.id}}" class="eventUpdate btn btn-primary"><span class="material-icons" title="Gerenciar contrato">library_add</span></a>
             </td>
         </tr>
         {{/each}}

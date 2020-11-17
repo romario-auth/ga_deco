@@ -236,6 +236,62 @@
             document.location.reload();
         })
     })
+
+
+
+    
+    /*
+    *
+    * Manager Contract Event Article
+    *
+    */
+     $(document).ready(function () {
+         // Get Id Event
+         let idEvent = $('.idEvent').attr('id');
+
+         // Get Element Data Event
+        $.ajax({
+            url: '/aplicativo/contract/manager/event/' + idEvent,
+            type: 'get',
+        })
+        .done(function(articleForEvent){
+            
+            $(".contract-event tbody").html
+            (
+                "<tr><td>" + articleForEvent[0].event.date + "</td>" +
+                "<td>" + articleForEvent[0].event.address + "</td>"+
+                "<td>" + articleForEvent[0].event.client + "</td>"+
+                "<td>" + articleForEvent[0].event.createdAt + "</td>"+
+                "<td>" + articleForEvent[0].event.updatedAt + "</td>"+
+                "</tr>"
+            );
+
+            var total = 0;
+            for (var i = 0; i < articleForEvent.length; i++)
+            {
+                let  oldTd = $(".contract-article tbody").html();
+                total += articleForEvent[i].value;
+
+                $(".contract-article tbody").html(
+                oldTd + 
+                "<tr>" +
+                    "<td>" + articleForEvent[i].article.name + "</td>"+
+                    "<td>" + articleForEvent[i].article.acquisition + "</td>"+
+                    "<td>" + articleForEvent[i].article.paid + "</td>"+
+                    "<td>" + articleForEvent[i].article.description + "</td>"+
+                    "<td> R$ " + articleForEvent[i].value + "</td>"+
+                    "<td>" + "<form method=\"POST\" action=/aplicativo/contract/article/delete> <input name=\"idContract\" type=hidden value=" + articleForEvent[i].article.id + " ><input name=\"idEvent\" type=hidden value=" + idEvent + "><input type=\"submit\" value=\"Excluir\"></form></td>"+
+                "</tr>");
+            }
+
+            // Inner total article
+            $(".contract-article tbody tr").last().after("<tr><td colspan='6'><span class='articleTotal'>Total: R$ " + total + " (para receber)</span></td></tr>");
+        })        
+        .fail(function(error){
+            $(".contract-event tbody, .contract-article tbody").html("Erro get data " + error)
+            console.log("Erro get data " + error);
+        })
+     });
 </script>
 
 <!--Calendar-->

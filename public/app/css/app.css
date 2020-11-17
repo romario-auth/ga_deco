@@ -118,7 +118,12 @@ table tbody td
     color: white;
     border-radius: 5px;
 }
-
+.articleTotal
+{
+    display: block;
+    text-align: right;
+    font-weight: 900;
+}
 /*Modal CSS*/
 .btn-exit-Modal
 {

@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../db/connection');
+const Event = require('../models/Event');
+const Article = require('../models/Article');
 
 const Contract = db.define('contract', {
     event_id: {
@@ -11,6 +13,7 @@ const Contract = db.define('contract', {
     value: {
         type: Sequelize.DOUBLE,
     }
-});
-
+})
+Contract.belongsTo(Event, {foreignKey: 'event_id'})
+Contract.belongsTo(Article, {foreignKey: 'article_id'})
 module.exports = Contract

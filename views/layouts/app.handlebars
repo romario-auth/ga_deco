@@ -249,22 +249,16 @@
          // Get Id Event
          let idEvent = $('.idEvent').attr('id');
 
+         // adiciona o value=idEvent em um form->input->type->hidden
+         // para corrigir uma deficiência do Handlebars
+         $('.event_id').val(idEvent);
+
          // Get Element Data Event
         $.ajax({
             url: '/aplicativo/contract/manager/event/' + idEvent,
             type: 'get',
         })
         .done(function(articleForEvent){
-            
-            $(".contract-event tbody").html
-            (
-                "<tr><td>" + articleForEvent[0].event.date + "</td>" +
-                "<td>" + articleForEvent[0].event.address + "</td>"+
-                "<td>" + articleForEvent[0].event.client + "</td>"+
-                "<td>" + articleForEvent[0].event.createdAt + "</td>"+
-                "<td>" + articleForEvent[0].event.updatedAt + "</td>"+
-                "</tr>"
-            );
 
             var total = 0;
             for (var i = 0; i < articleForEvent.length; i++)
@@ -280,7 +274,7 @@
                     "<td>" + articleForEvent[i].article.paid + "</td>"+
                     "<td>" + articleForEvent[i].article.description + "</td>"+
                     "<td> R$ " + articleForEvent[i].value + "</td>"+
-                    "<td>" + "<form method=\"POST\" action=/aplicativo/contract/article/delete> <input name=\"idContract\" type=hidden value=" + articleForEvent[i].article.id + " ><input name=\"idEvent\" type=hidden value=" + idEvent + "><input type=\"submit\" value=\"Excluir\"></form></td>"+
+                    "<td>" + "<form method=\"POST\" action=/aplicativo/contract/article/delete> <input name=\"idArticle\" type=hidden value=" + articleForEvent[i].article.id + " ><input name=\"idEvent\" type=hidden value=" + idEvent + "><input type=\"submit\" value=\"Excluir\"></form></td>"+
                 "</tr>");
             }
 

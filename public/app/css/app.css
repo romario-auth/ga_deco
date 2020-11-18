@@ -29,7 +29,7 @@ header .material-icons
     margin-right: -30px;
     padding-right: -10px;
 
-    height: 650px;
+    height: 100%;
 }
 .menu-logo
 {
@@ -46,22 +46,34 @@ header .material-icons
 .list-group .item
 {
     margin-top: 20px;
+    font-weight: bold;
+    color: #999999
 }
 .list-group .material-icons
 {
     font-size: 15px;
-    color: rgb(162, 92, 228);
+    color: #999999
 }
 .sub-menu
 {
     list-style-type: none;
-    margin-left: -38px;
+    padding-left: 20px;
 }
 .sub-menu a
 {
-    width: 200px;
-    margin: 2px 0px 2px 0px;
+    width: 230px;
+    margin: 2px 0px 2px -30px;
     font-size: 14px !important;
+}
+.sub-menu .btn-secondary:link, .sub-menu .btn-secondary:visited
+{
+    border: none !important;
+    text-align: left;
+}
+.sub-menu .btn-secondary .material-icons
+{
+    display: block;
+    text-align: right !important;
 }
 
 
@@ -135,6 +147,53 @@ table tbody td
 }
 
 
+
+
+/*Home*/
+.gadgetHome
+{
+    width: 190px;
+    height: 100px;
+
+    -webkit-box-shadow: 0px 0px 6px 0px #000000; 
+    box-shadow: 0px 0px 6px 0px #000000;    
+}
+.gadgetHome .material-icons
+{
+    margin-top: 0px;
+    font-size: 65px;
+    margin-top: 14px;
+    margin-left: 5px;
+    color: #7460ee;
+}
+..gadgetHome .material-icons:hover
+{
+    font-size: 70px !important;
+}
+.gadget-text, .gadget-value
+{
+    display: table;
+}
+.gadget-value
+{
+    font-weight: bold;
+    margin-left: 70px;
+    margin-top: -58px;
+}
+.gadget-text
+{
+    color: #777;
+    font-size: 16px;
+    margin-left: 70px;
+    margin-top: 0px;
+
+}
+.container-gadget{
+    border: none !important;
+
+    -webkit-box-shadow: 0px -7px 12px -10px #000000 !important; 
+    box-shadow: 0px -7px 12px -10px #000000 !important;
+}
 
 
 

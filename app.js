@@ -56,3 +56,7 @@ app.use('/aplicativo/event', require('./routes/events'));
 
 // Router Contract
 app.use('/aplicativo/contract', require('./routes/contracts'));
+
+// Gadget Home
+// Router Contract
+app.use('/aplicativo/gadget', require('./routes/gadgets'));

@@ -26,21 +26,33 @@
     <div class="row">
             <div class="col-sm-2">
             <div class="menu">
-                <img class="menu-logo" src="/app/img/logo.png">
+                <a href="/aplicativo"><img class="menu-logo" src="/app/img/logo.png"></a>
                 <p>MAIN NAVIGATION: </p>
                 <ul class="list-group">
                     <li class="item">
                         <span class="material-icons">shopping_cart</span> Artigos
                         <ul class="sub-menu">
-                            <li><a href="/aplicativo/article/list" class="btn btn-outline-secondary btn-block">Gerenciar</a></li>
-                            <li><a href="/aplicativo/article/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
+                            <li><a href="/aplicativo/article/add" class="btn btn-secondary btn-block">Adicionar</a></li>
+                            <li><a href="/aplicativo/article/list" class="btn btn-secondary btn-block">Gerenciar
+                            <span class="badge badge-primary"><span class="material-icons text-light" title="Editar">edit</span></span>
+                            <span class="badge badge-success"><span class="material-icons text-light" title="Remover">remove_circle_outline</span></span></a></li>
                         </ul>
                     </li>
                     <li class="item">
                         <span class="material-icons">cake</span> Eventos
                         <ul class="sub-menu">
-                            <li><a href="/aplicativo/event/list" class="btn btn-outline-secondary btn-block">Gerenciar</a></li>
-                            <li><a href="/aplicativo/event/add" class="btn btn-outline-secondary btn-block">Adicionar</a></li>
+                            <li><a href="/aplicativo/event/add" class="btn btn-secondary btn-block">Adicionar</a></li>
+                            <li><a href="/aplicativo/event/list" class="btn btn-secondary btn-block">Gerenciar</a></li>
+                        </ul>
+                    </li>
+                    <li class="item">
+                        <span class="material-icons">home_repair_service</span> Ferramentas Externas
+                        <ul class="sub-menu">
+                            <li><a href="" class="btn btn-secondary btn-block">Agenda GaDeco</a></li>
+                            <li><a href="https://calendar.google.com/calendar/u/0/r?tab=wc" class="btn btn-secondary btn-block">Agenda Google</a></li>
+                            <li><a href="https://mail.google.com/mail/u/0/" class="btn btn-secondary btn-block">E-mail</a></li>
+                            <li><a href="https://web.whatsapp.com/" class="btn btn-secondary btn-block">WhatsApp</a></li>
+                            <li><a href="https://www.google.com.br/maps" class="btn btn-secondary btn-block">Mapa da cidade</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -286,6 +298,57 @@
             console.log("Erro get data " + error);
         })
      });
+
+
+/*
+*
+*
+* gadget Home
+*
+*/
+$(document).ready(function () {
+
+        $.ajax({
+            url: '/aplicativo/gadget/investment/',
+            type: 'get',
+        })
+        .done(function(investment){
+            $('.gadget-investment').text("R$: " + investment.sum);
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/return/',
+            type: 'get',
+        })
+        .done(function(returnInvest){
+            $('.gadget-returnInvest').text(returnInvest.returnInvest.toFixed(2) +"%");
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/event/total',
+            type: 'get',
+        })
+        .done(function(total){
+            $('.gadget-totalEvent').text(total.total);
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/article/total',
+            type: 'get',
+        })
+        .done(function(total){
+            $('.gadget-totalArticle').text(total.total);
+        })
+
+        $.ajax({
+            url: '/aplicativo/gadget/contract/max',
+            type: 'get',
+        })
+        .done(function(max){
+            $('.gadget-maxContract').text(max.max);
+        })
+});
+
 </script>
 
 <!--Calendar-->
@@ -298,6 +361,51 @@
             today: true,
         });
     });
+</script>
+
+<!-Graphic ChartJs-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script>
+$(document).ready(function () {
+
+    $.ajax({
+            url: '/aplicativo/gadget/contract/lastrent',
+            type: 'get',
+        })
+        .done(function(lastrent){
+
+            lastRent= "[";
+            for(var i=0; i < lastrent.contract.length; i++)
+            {
+                lastRent +=lastrent.contract[i].value + ",";
+                if( i + 1 == lastrent.contract.length){
+                    lastRent += lastrent.contract[i].value + "]";
+                }
+            }
+
+            var rentsContract = JSON.parse(lastRent);
+
+            var ctx = document.getElementById('lastRend').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+
+                // The data for our dataset
+                data: {
+                    labels: ['1', '2', '3', '4', '5', '6', '7'],
+                    datasets: [{
+                        label: 'Últimos alugueis',
+                        backgroundColor: 'rgba(255, 99, 132,0.2)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: rentsContract
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+    })
+});
 </script>
 </body>
 </html>

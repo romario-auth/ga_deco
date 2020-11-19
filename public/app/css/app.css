@@ -22,7 +22,7 @@ header .material-icons
 .menu
 {
     border-radius: 0px;
-    background-color: #333333;
+    background-color: #222d32;
     color: white;
     border-right: 1px solid white;
     box-shadow: 2px 5px whitesmoke;
@@ -31,11 +31,25 @@ header .material-icons
 
     height: 100%;
 }
+.menu p
+{
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 5px 10px 5px 10px;
+    background-color: black;
+    text-align: center;
+}
 .menu-logo
 {
     padding-top: 30px;
-    padding-left: 10px;
+    margin-left: 24px;
     width: 184px;
+    margin-bottom: 30px;
+    background-color: #6a7d86;
+}
+.menu-logo:hover
+{
+    width: 190px;
 }
 .list-group
 {
@@ -70,12 +84,22 @@ header .material-icons
     border: none !important;
     text-align: left;
 }
-.sub-menu .btn-secondary .material-icons
+.sub-menu .btn-secondary span
 {
-    display: block;
-    text-align: right !important;
+    color: white;
+    display: inline-block;
+    text-align: left !important;
+    background-color: #0099cc;
+    padding: 1px;
+    padding-left: 2px;
+    border-radius: 4px;
 }
-
+.sub-menu .btn-secondary .btn-menu-title
+{
+    display: inline-block;
+    width: 150px;
+    background: none !important;
+}
 
 
 
@@ -166,9 +190,9 @@ table tbody td
     margin-left: 5px;
     color: #7460ee;
 }
-..gadgetHome .material-icons:hover
+.gadgetHome .material-icons:hover
 {
-    font-size: 70px !important;
+    font-size: 68px !important;
 }
 .gadget-text, .gadget-value
 {

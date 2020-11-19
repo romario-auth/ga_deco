@@ -60,3 +60,9 @@ app.use('/aplicativo/contract', require('./routes/contracts'));
 // Gadget Home
 // Router Contract
 app.use('/aplicativo/gadget', require('./routes/gadgets'));
+
+// Gadget Calendar
+// Router Calendar
+app.get('/aplicativo/gadget/calendar', (req, res) => {
+    res.render("calendar");
+});

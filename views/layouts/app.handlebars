@@ -119,6 +119,9 @@
         let idArticle = $('#idArticle').val();
 
         $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },
             url: '/aplicativo/article/delete',
             type: 'post',
             data: {
@@ -151,6 +154,9 @@
         let descriptionArticle = $('#updateArticle #description').val();
 
         $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },
             url: '/aplicativo/article/update',
             type: 'post',
             data: {
@@ -158,7 +164,7 @@
                 name: nameArticle,
                 acquisition: acquisitionArticle,
                 paid: paidArticle,
-                description: descriptionArticle
+                description: descriptionArticle,
             },
         })
         .done(function(res){
@@ -210,6 +216,9 @@
         let idEvent = $('#idEvent').val();
 
         $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },            
             url: '/aplicativo/event/delete',
             type: 'post',
             data: {
@@ -241,6 +250,9 @@
         let clientEvent = $('#updateEvent #client').val();
 
         $.ajax({
+            headers: {
+                'CSRF-Token': "{{_csrfToken}}"
+            },            
             url: '/aplicativo/event/update',
             type: 'post',
             data: {
@@ -297,20 +309,25 @@
                 "<tr>" +
                     "<td>" + articleForEvent[i].article.name + "</td>"+
                     "<td>" + articleForEvent[i].article.acquisition + "</td>"+
-                    "<td>" + articleForEvent[i].article.paid + "</td>"+
+                    "<td> R$ " + articleForEvent[i].article.paid.toFixed(2) + "</td>"+
                     "<td>" + articleForEvent[i].article.description + "</td>"+
-                    "<td> R$ " + articleForEvent[i].value + "</td>"+
-                    "<td>" + "<form method=\"POST\" action=/aplicativo/contract/article/delete> <input name=\"idArticle\" type=hidden value=" + articleForEvent[i].article.id + " ><input name=\"idEvent\" type=hidden value=" + idEvent + "><input type=\"submit\" value=\"Excluir\"></form></td>"+
+                    "<td> R$ " + articleForEvent[i].value.toFixed(2) + "</td>"+
+                    "<td>" + "<form method=\"POST\" action=/aplicativo/contract/article/delete> <input name=\"idArticle\" type=hidden value=" + articleForEvent[i].article.id + " ><input name=\"idEvent\" type=hidden value=" + idEvent + "><input type=\"hidden\" name=\"_csrf\" value=\"{{_csrfToken}}\"><input type=\"submit\" value=\"Excluir\"></form></td>"+
                 "</tr>");
             }
 
             // Inner total article
-            $(".contract-article tbody tr").last().after("<tr><td colspan='6'><span class='articleTotal'>Total: R$ " + total + " (para receber)</span></td></tr>");
+            $(".contract-article tbody tr").last().after("<tr><td colspan='6'><span class='articleTotal'>Total: R$ " + total.toFixed(2) + " (para receber)</span></td></tr>");
         })        
         .fail(function(error){
             $(".contract-event tbody, .contract-article tbody").html("Erro get data " + error)
             console.log("Erro get data " + error);
         })
+
+        /*Confirm excluir*/
+        $('.forFormExcluir').click(function(){
+            alert('Tem certeza');
+        });
      });
 
 

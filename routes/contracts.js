@@ -47,7 +47,6 @@ router.get('/event/:idEvent', (req, res) => {
             // Give back Search if term
             if(!termSearch)
             {
-                console.log("\n\n ****Devolver o Evento: " + req.path)
                 res.render('eventManager', {event});
             }
             else{
@@ -58,7 +57,6 @@ router.get('/event/:idEvent', (req, res) => {
                 })
                 .then((resultSearch) => {
                     res.render('eventManager', {event,termSearch, resultSearch});
-                    console.log("\n\n ****Fazer busca 1: " + req.path)
                 })
                 .catch((err) => console.log("Error search Article"))
             }
@@ -97,26 +95,6 @@ router.post('/article/delete/', (req, res) => {
     })
     .then(() => res.redirect('/aplicativo/contract/event/'+idEvent))
     .catch(err => console.log('Delete erro' + err))
-})
-
-
-// Get Contract
-router.get('/event/:event', (req, res) => {
-    let contractEvent = req.params.event
-
-    Contract.findAndCountAll({ 
-        where: {event_id: contractEvent},
-        order: [
-            ['updatedAt', 'DESC']
-    ]})
-    .then(
-        contracts => {if(contracts.count > 0){
-            res.send(contracts)} else
-            {
-                res.redirect('/notfound')
-            }
-        })
-    .catch(err => console.log('Erro lits Contract' + err))
 })
 
 

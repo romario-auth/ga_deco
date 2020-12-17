@@ -21,8 +21,18 @@
 
 <header>
     <div class="top-bar-welcome">
-        <button class="btn btn-success" disabled>Nova conta</button> -
-        <button class="btn btn-success" disabled>Log in</button>  - 
+        {{#if userGaDeco.dataValues.name}}
+            <a href="/aplicativo/account" class="btn btn-success">
+                {{userGaDeco.dataValues.name}}
+            </a>  -
+            <a href="/aplicativo/logout" class="btn btn-success">
+                Sair
+            </a>  -           
+        {{else}}
+            <a href="/auth/facebook" class="btn btn-success">
+                Nova conta ou Login
+            </a>  - 
+        {{/if}}
         <a class="btn btn-success" href="/about">Sobre nós</a>
     </div>
 </header>

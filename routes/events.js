@@ -7,7 +7,10 @@ router.get('/detail/:id', (req, res) => {
     let idEvent = req.params.id;
 
     Event.findAll({
-        where: {id: idEvent},
+        where: {
+            id: idEvent,
+            user_id: req.user.id
+        },
     })
     .then(event => {
         res.send(event)
@@ -22,7 +25,10 @@ router.post('/delete', (req, res) => {
     let idEvent = req.body.id;
     
     Event.destroy({
-        where: {id: idEvent}
+        where: {
+            id: idEvent,
+            user_id: req.user.id
+        }
     })
     .then(() => res.send(true))
     .catch(err => console.log('Delete erro' + err))
@@ -37,7 +43,7 @@ router.post('/update', (req, res) => {
         event.date = date
         event.address = address
         event.client = client
-
+        if(event.user_id == req.user.id)
         return event.save()
     })
     .then(() => res.send(true))
@@ -46,7 +52,9 @@ router.post('/update', (req, res) => {
 
 //List Event
 router.get('/list', (req, res) => {
-    Event.findAll({order: [
+    Event.findAll({
+        where: {user_id: req.user.id},
+        order: [
         ['id', 'DESC']
     ]})
     .then(events => {
@@ -63,9 +71,11 @@ router.get('/add', (req, res) => {
 // Add Event
 router.post('/add', (req, res) => {
     let {date, address, client} = req.body
+    let user_id = req.user.id;
 
     // Insert
     Event.create({
+        user_id,
         date,
         address,
         client

@@ -12,7 +12,10 @@ router.get('/manager/event/:idEvent', (req, res) => {
     let idEvent = req.params.idEvent
 
     Contract.findAll({
-        where: {event_id: idEvent},
+        where: {
+            event_id: idEvent,
+            user_id: req.user.id
+        },
         include:[
             {
                 model: Event
@@ -39,7 +42,7 @@ router.get('/event/:idEvent', (req, res) => {
     Event.findByPk(idEvent)
     .then((event) => {
 
-        if(event === null)
+        if(event === null || event.user_id != req.user.id)
         {
             res.redirect('/notfound');
         }else
@@ -67,15 +70,30 @@ router.get('/event/:idEvent', (req, res) => {
 })
 
 
+// Delete Contract
+router.post('/article/delete/', (req, res) => {
+    
+    let idEvent = req.body.idEvent;    
+    let idArticle = req.body.idArticle;
+    let user_id = req.user.id;
+    
+    Contract.destroy({
+        where: {event_id: idEvent, article_id: idArticle, user_id: user_id}
+    })
+    .then(() => res.redirect('/aplicativo/contract/event/'+idEvent))
+    .catch(err => console.log('Delete erro' + err))
+})
 
 // Add Contract
 router.post('/article/add/', (req, res) => {
     let idEvent = req.body.idEvent
     let idArticle = req.body.idArticle
     let valueContract = req.body.valueContract
+    let user_id = req.user.id
 
     // Insert
     Contract.create({
+        user_id: user_id,
         event_id: idEvent,
         article_id: idArticle,
         value: valueContract
@@ -83,33 +101,4 @@ router.post('/article/add/', (req, res) => {
     .then(() => res.redirect('/aplicativo/contract/event/'+idEvent))
     .catch(err => console.log('Erro add Contract: ' + err))
 })
-
-// Delete Contract
-router.post('/article/delete/', (req, res) => {
-    
-    let idEvent = req.body.idEvent;    
-    let idArticle = req.body.idArticle;
-    
-    Contract.destroy({
-        where: {event_id: idEvent, article_id: idArticle}
-    })
-    .then(() => res.redirect('/aplicativo/contract/event/'+idEvent))
-    .catch(err => console.log('Delete erro' + err))
-})
-
-
-// Add Contract
-router.post('/add', (req, res) => {
-    let {event_id, articles_id, value} = req.body
-
-    // Insert
-    Contract.create({
-        event_id,
-        articles_id,
-        value
-    })
-    .then(() => res.redirect('/event'))
-    .catch(err => console.log('Erro add Contract: ' + err))
-})
-
 module.exports = router

@@ -7,7 +7,10 @@ router.get('/detail/:id', (req, res) => {
     let idArticle = req.params.id;
 
     Article.findAll({
-        where: {id: idArticle},
+        where: {
+            id: idArticle,
+            user_id: req.user.id
+        },
     })
     .then(article => {
         res.send(article)
@@ -22,7 +25,10 @@ router.post('/delete', (req, res) => {
     let idArticle = req.body.id;
     
     Article.destroy({
-        where: {id: idArticle}
+        where: {
+            id: idArticle,
+            user_id: req.user.id
+        }
     })
     .then(() => res.send(true))
     .catch(err => console.log('Delete erro' + err))
@@ -38,7 +44,7 @@ router.post('/update', (req, res) => {
         article.acquisition = acquisition
         article.paid = paid
         article.description = description
-
+        if(article.user_id == req.user.id)
         return article.save()
     })
     .then(() => res.send(true))
@@ -47,9 +53,13 @@ router.post('/update', (req, res) => {
 
 // List article
 router.get('/list', (req, res) =>{
-    Article.findAll({order: [
-        ['id', 'DESC']
-    ]})
+
+    Article.findAll({
+        where: {user_id: req.user.id},
+        order: [
+            ['id', 'DESC']
+        ]
+    })
     .then(articles => {
         res.render('articleList', {articles});
     })
@@ -64,9 +74,11 @@ router.get('/add', (req, res) => {
 // add Article
 router.post('/add', (req, res) => {
     let {name, acquisition, paid, description} = req.body;
+    let user_id = req.user.id;
 
     // insert
     Article.create({
+        user_id,
         name,
         acquisition,
         paid,

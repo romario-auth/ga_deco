@@ -4,6 +4,9 @@ const Event = require('../models/Event');
 const Article = require('../models/Article');
 
 const Contract = db.define('contract', {
+    user_id: {
+        type: Sequelize.INTEGER,
+    },
     event_id: {
         type: Sequelize.INTEGER,
     },

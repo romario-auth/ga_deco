@@ -9,7 +9,7 @@ const Op = Sequelize.Op;
 
 // Gadget Investment Article
 router.get('/investment', (req, res) =>{
-    Article.sum('paid')
+    Article.sum('paid', {where: {user_id: req.user.id}})
     .then((sum) => {
         res.send({sum});
     })
@@ -18,10 +18,10 @@ router.get('/investment', (req, res) =>{
 
 // Gadget return Contract/Article
 router.get('/return', (req, res) =>{
-    Contract.sum('value')
+    Contract.sum('value', {where: {user_id: req.user.id}})
     .then((sumContract) => {
 
-        Article.sum('paid')
+        Article.sum('paid', {where: {user_id: req.user.id}})
         .then((sumArticle) => {
             let returnInvest = (sumContract / sumArticle *100);
             res.send({returnInvest});
@@ -32,7 +32,7 @@ router.get('/return', (req, res) =>{
 
 // Gadget total event
 router.get('/event/total', (req, res) =>{
-    Event.count()
+    Event.count({where: {user_id: req.user.id}})
     .then((total) => {
         res.send({total})
     })
@@ -41,7 +41,7 @@ router.get('/event/total', (req, res) =>{
 
 // Gadget total article
 router.get('/article/total', (req, res) =>{
-    Article.count()
+    Article.count({where: {user_id: req.user.id}})
     .then((total) => {
         res.send({total})
     })
@@ -51,7 +51,7 @@ router.get('/article/total', (req, res) =>{
 
 // Gadget max aluguel
 router.get('/contract/max', (req, res) =>{
-    Contract.max('value')
+    Contract.max('value', {where: {user_id: req.user.id}})
     .then((max) => {
         res.send({max})
     })
@@ -61,10 +61,12 @@ router.get('/contract/max', (req, res) =>{
 // Gadget last Rent
 router.get('/contract/lastrent', (req, res) =>{
     Contract.findAll(
-        {order: [
-            ['id', 'DESC']
-        ],
-        limit: 7
+        {
+            where: {user_id: req.user.id},
+            order: [
+                ['id', 'DESC']
+            ],
+            limit: 7
         }
     )
     .then((contract) => {

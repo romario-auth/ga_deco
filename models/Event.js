@@ -2,6 +2,9 @@ const Sequelize = require('sequelize');
 const db = require('../db/connection');
 
 const Event = db.define('event', {
+    user_id: {
+        type: Sequelize.INTEGER,
+    },
     date: {
         type: Sequelize.DATE,
     },

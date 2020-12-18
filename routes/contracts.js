@@ -55,7 +55,8 @@ router.get('/event/:idEvent', (req, res) => {
             else{
                 Article.findAll({
                     where: {
-                        description: {[Op.like]: query}
+                        description: {[Op.like]: query},
+                        user_id: req.user.id
                     }
                 })
                 .then((resultSearch) => {

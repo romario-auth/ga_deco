@@ -22,7 +22,7 @@ app.engine('handlebars', exphbs({
           if(!this._sections) this._sections = {}
           this._sections[name] = options.fn(this)
           return null
-        },
+        }
       },
 }))
 app.set('view engine', 'handlebars');
@@ -102,11 +102,15 @@ const userData = (req, res, next)=> {
     }
     return userGaDeco
 }
+// Pass variable for defaultLayout
+app.use((req, res, next) =>{
+    app.locals.userGaDeco = userData(req);
+    next();
+})
+
 // Routes Welcome
 app.get('/', (req, res) => {
-
-    var userGaDeco = userData(req)
-    res.render("welcomeHome", {layout: 'welcome', userGaDeco: userGaDeco});
+    res.render("welcomeHome", {layout: 'welcome'});
 });
 app.get('/about', (req, res) => {
     res.render("welcomeAbout", {layout: 'welcome'});
@@ -121,7 +125,7 @@ const customerOnly = (req, res, next) => {
 }
 
 app.get('/aplicativo/account', customerOnly, (req, res) => {
-    res.render("account", {username: req.user.name})
+    res.render("account")
 })
 // page unauthorized
 app.get('/unauthorized', (req, res) => {

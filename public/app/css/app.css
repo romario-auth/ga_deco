@@ -102,7 +102,13 @@ header .material-icons
 }
 
 
-
+.appAllFrame
+{
+    background-image: url("/app/img/pexels-berk-ozdemir-3779822.jpg");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .appframe .container
 {
     margin: 30px;
@@ -119,6 +125,8 @@ header .material-icons
 
     max-height: 520px;
     overflow: auto;
+
+    opacity: 0.95;
 }
 
 

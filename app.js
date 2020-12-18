@@ -132,33 +132,33 @@ app.get('/unauthorized', (req, res) => {
     res.status(403).render('unauthorized', {layout: 'welcome'})
 })
 // and a way to logout
-app.get('/aplicativo/logout', (req, res) => {
+app.get('/aplicativo/logout',  customerOnly,(req, res) => {
     req.logout()
     res.redirect('/')
 })
 
 
 // Route Aplicative
-app.get('/aplicativo', (req, res) => {
+app.get('/aplicativo', customerOnly,(req, res) => {
     res.render('home')
 })
 
 // Route Article
-app.use('/aplicativo/article', require('./routes/articles'));
+app.use('/aplicativo/article', customerOnly, require('./routes/articles'));
 
 // Route Event
-app.use('/aplicativo/event', require('./routes/events'));
+app.use('/aplicativo/event', customerOnly, require('./routes/events'));
 
 // Router Contract
-app.use('/aplicativo/contract', require('./routes/contracts'));
+app.use('/aplicativo/contract', customerOnly, require('./routes/contracts'));
 
 // Gadget Home
 // Router Contract
-app.use('/aplicativo/gadget', require('./routes/gadgets'));
+app.use('/aplicativo/gadget', customerOnly, require('./routes/gadgets'));
 
 // Gadget Calendar
 // Router Calendar
-app.get('/aplicativo/gadget/calendar', (req, res) => {
+app.get('/aplicativo/gadget/calendar', customerOnly, (req, res) => {
     res.render("calendar");
 });
 
